@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
+using kalodile.Infrastructure.EntityFrameworkCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace kalodile
 {
@@ -29,6 +24,15 @@ namespace kalodile
             services.AddMediatR(typeof(Startup));
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddDbContext<Infrastructure.EntityFrameworkCore.DbContext>(options =>
+            {
+                options.UseCosmos("https://localhost:8081",
+                    "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
+                    "KalodileDb");
+            });
+
+            services.AddTransient(typeof(ListingItemRepository));
 
             services.AddControllers();
             

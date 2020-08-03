@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace kalodile.Controllers.ListingItem
+﻿namespace kalodile.Controllers.ListingItem.Dto
 {
     public class ListingItemDto
     {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using kalodile.Controllers.ListingItem.Dto;
 
-namespace kalodile.Controllers.ListingItem
+namespace kalodile.Controllers.ListingItem.Mapping
 {
     public class ListingItemToDtoMapper : Profile
     {

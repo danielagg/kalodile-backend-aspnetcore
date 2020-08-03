@@ -1,26 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace kalodile.Domain.ListingItem
 {
     public class ListingItem : Entity
     {
         public string Name { get; }
+        public string Type { get; }
 
-        public static ListingItem Create(
-            string name)
+        // necessary for EF Core
+        protected ListingItem() { }
+
+        public static ListingItem Create(ListingItemCreate data)
         {
-            return new ListingItem(name);
+            return new ListingItem(
+                data.Name,
+                data.Type);
         }
 
         private ListingItem(
-            string name)
+            string name,
+            string type)
         {
             Name = name;
+            Type = type;
 
-            Id = Guid.NewGuid();
+            Id = GenerateId();
             CreatedOn = DateTime.UtcNow;
         }
     }
