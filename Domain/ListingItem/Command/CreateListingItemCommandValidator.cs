@@ -1,7 +1,4 @@
 ﻿using FluentValidation;
-using kalodile.Controllers.ListingItem.Dto;
-using kalodile.Infrastructure.EntityFrameworkCore;
-using MediatR;
 
 namespace kalodile.Domain.ListingItem.Command
 {
@@ -10,7 +7,7 @@ namespace kalodile.Domain.ListingItem.Command
         public CreateListingItemCommandValidator()
         {
             RuleFor(x => x.Data.Name).NotEmpty();
-            RuleFor(x => x.Data.Type).NotEmpty();
+            RuleFor(x => x.Data.Category.MainCategory).NotEmpty();
         }
     }
 }

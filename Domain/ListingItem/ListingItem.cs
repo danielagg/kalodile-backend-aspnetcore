@@ -5,7 +5,7 @@ namespace kalodile.Domain.ListingItem
     public class ListingItem : Entity
     {
         public string Name { get; private set; }
-        public string Type { get; private set; }
+        public ListingCategory Category { get; private set; }
 
         // necessary for EF Core
         protected ListingItem() { }
@@ -14,15 +14,15 @@ namespace kalodile.Domain.ListingItem
         {
             return new ListingItem(
                 data.Name,
-                data.Type);
+                data.Category);
         }
 
         private ListingItem(
             string name,
-            string type)
+            ListingCategory category)
         {
             Name = name;
-            Type = type;
+            Category = category;
 
             Id = GenerateId();
             CreatedOn = DateTime.UtcNow;

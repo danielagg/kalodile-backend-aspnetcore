@@ -21,8 +21,9 @@ namespace kalodile.Infrastructure.EntityFrameworkCore
 
         private void OnCreatingListItems(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ListingItem>()
-               .ToContainer("ListingItems");
+            modelBuilder.Entity<ListingItem>().ToContainer("ListingItems");
+
+            modelBuilder.Entity<ListingItem>().OwnsOne(o => o.Category);
         }
     }
 }
