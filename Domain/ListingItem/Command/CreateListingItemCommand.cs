@@ -3,11 +3,11 @@ using MediatR;
 
 namespace kalodile.Domain.ListingItem.Command
 {
-    public class CreateListingItemQuery : IRequest<ListingItemDto>
+    public class CreateListingItemCommand : IRequest<ListingItemDto>
     {
         public ListingItemCreate Data { get; }
 
-        public CreateListingItemQuery(ListingItemCreate request)
+        public CreateListingItemCommand(ListingItemCreate request)
         {
             Data = request;
         }

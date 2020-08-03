@@ -33,7 +33,7 @@ namespace kalodile.Controllers.ListingItem
         public async Task<IActionResult> Create([FromBody] ListingItemCreateRequestDto item)
         {
             var request = _mapper.Map<ListingItemCreate>(item);
-            var query = new CreateListingItemQuery(request);
+            var query = new CreateListingItemCommand(request);
 
             var result = await _mediator.Send(query);
             return Ok(result);

@@ -1,6 +1,9 @@
 using AutoMapper;
+using FluentValidation.AspNetCore;
+using kalodile.Domain.ListingItem.Command;
 using kalodile.Infrastructure.EntityFrameworkCore;
 using kalodile.Infrastructure.Exceptions;
+using kalodile.Infrastructure.MediatrPipeline;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,11 +36,12 @@ namespace kalodile
             });
 
             services.AddTransient(typeof(ListingItemRepository));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(KalodileExceptionFilter));
-            });
+            }).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateListingItemCommandValidator>());
 
             services.AddSwaggerGen();
         }

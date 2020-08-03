@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace kalodile.Infrastructure.Exceptions
@@ -12,6 +13,7 @@ namespace kalodile.Infrastructure.Exceptions
 
             context.HttpContext.Response.StatusCode = context.Exception switch
             {
+                ValidationException _ => (int)HttpStatusCode.BadRequest,
                 BadRequestException _ => (int)HttpStatusCode.BadRequest,
                 NotFoundException _ => (int)HttpStatusCode.NotFound,
                 InternalServerErrorException _ => (int)HttpStatusCode.InternalServerError,

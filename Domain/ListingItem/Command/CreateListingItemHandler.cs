@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace kalodile.Domain.ListingItem.Command
 {
-    public class CreateListingItemHandler : IRequestHandler<CreateListingItemQuery, ListingItemDto>
+    public class CreateListingItemHandler : IRequestHandler<CreateListingItemCommand, ListingItemDto>
     {
         private readonly ListingItemRepository _repository;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace kalodile.Domain.ListingItem.Command
             _mapper = mapper;
         }
 
-        public async Task<ListingItemDto> Handle(CreateListingItemQuery request, CancellationToken cancellationToken)
+        public async Task<ListingItemDto> Handle(CreateListingItemCommand request, CancellationToken cancellationToken)
         {
             if (request?.Data == null)
                 throw new ListingItemCannotBeCreatedException();
