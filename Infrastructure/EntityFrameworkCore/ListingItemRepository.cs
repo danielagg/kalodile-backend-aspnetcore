@@ -17,7 +17,7 @@ namespace kalodile.Infrastructure.EntityFrameworkCore
 
         public async Task<ListingItem> FindById(string id)
         {
-            var result = await _context.ListingItems.SingleAsync(li => li.Id == id);
+            var result = await _context.ListingItems.SingleOrDefaultAsync(li => li.Id == id);
             return result;
         }
 

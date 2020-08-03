@@ -1,12 +1,12 @@
 using AutoMapper;
 using kalodile.Infrastructure.EntityFrameworkCore;
+using kalodile.Infrastructure.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace kalodile
 {
@@ -34,18 +34,16 @@ namespace kalodile
 
             services.AddTransient(typeof(ListingItemRepository));
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(KalodileExceptionFilter));
+            });
 
             services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseHttpsRedirection();
 
             app.UseSwagger();
