@@ -4,8 +4,8 @@ namespace kalodile.Domain.ListingItem
 {
     public class ListingItem : Entity
     {
-        public string Name { get; }
-        public string Type { get; }
+        public string Name { get; private set; }
+        public string Type { get; private set; }
 
         // necessary for EF Core
         protected ListingItem() { }
