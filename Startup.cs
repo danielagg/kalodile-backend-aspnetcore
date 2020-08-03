@@ -35,7 +35,7 @@ namespace kalodile
             services.AddTransient(typeof(ListingItemRepository));
 
             services.AddControllers();
-            
+
             services.AddSwaggerGen();
         }
 

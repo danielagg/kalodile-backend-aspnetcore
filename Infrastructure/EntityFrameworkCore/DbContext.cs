@@ -14,10 +14,15 @@ namespace kalodile.Infrastructure.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ListingItem>()
-                .ToContainer("ListingItems");
+            OnCreatingListItems(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        private void OnCreatingListItems(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ListingItem>()
+               .ToContainer("ListingItems");
         }
     }
 }
